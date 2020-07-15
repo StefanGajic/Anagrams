@@ -1,0 +1,11 @@
+enlist
+inlets
+listen
+silent
+boaster
+boaters
+borates
+fresher
+refresh
+rots
+sort
