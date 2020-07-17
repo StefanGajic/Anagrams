@@ -1,28 +1,28 @@
 class Anagrams
-  RESULT = {}
 
-  def initialize(filename)
-    @filename = filename
+  def initialize(file)
+    @file = file
+    @result = {}
   end
 
-  def read
-    File.open(@filename).read.split("\n")
+  def read_wordlist
+    if @file.is_a?(Array)
+      return @file
+    else
+      File.read(@file).split("\n")
+    end
   end
 
   def get_anagrams
-    read.each do |word|
+    read_wordlist.each do |word|
       key = word.split('').sort.join
-      if RESULT.key?(key)
-        RESULT[key].push(word)
+      if @result.key?(key)
+        @result[key] << word
       else
-        RESULT[key] = [word]
+        @result[key] = [word]
       end
     end
-    RESULT.values
+    @result.values
   end
 
-  def to_s
-    get_anagrams.to_s.delete_prefix("[").delete_suffix("]")
-  end
-
-end 
+end
