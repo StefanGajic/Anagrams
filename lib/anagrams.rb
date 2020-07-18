@@ -2,27 +2,27 @@ class Anagrams
 
   def initialize(file)
     @file = file
-    @result = {}
   end
 
   def read_wordlist
     if @file.is_a?(Array)
-      return @file
+      @file
     else
-      File.read(@file).split("\n")
+      File.read(@file).encode("UTF-8", :invalid => :replace, :replace => "").split("\n")
     end
   end
 
   def get_anagrams
+    result = {}
     read_wordlist.each do |word|
       key = word.split('').sort.join
-      if @result.key?(key)
-        @result[key] << word
+      if result.key?(key)
+        result[key] << word
       else
-        @result[key] = [word]
+        result[key] = [word]
       end
     end
-    @result.values
+    result.values
   end
 
 end
