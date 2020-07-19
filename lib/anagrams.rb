@@ -8,7 +8,7 @@ class Anagrams
     if @file.is_a?(Array)
       @file
     else
-      File.read(@file).encode("UTF-8", :invalid => :replace, :replace => "").split("\n")
+      File.read(@file).encode("UTF-8", invalid: :replace, replace: "").split("\n")
     end
   end
 
@@ -22,7 +22,10 @@ class Anagrams
         result[key] = [word]
       end
     end
-    result.values
+    result
   end
 
+  def get_word(word)
+    get_anagrams[word.chars.sort.join]
+  end
 end

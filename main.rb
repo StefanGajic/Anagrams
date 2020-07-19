@@ -1,10 +1,9 @@
 require_relative "lib/anagrams"
 
-print "Enter the name of the file you want to check for anagrams? "
-input_text = gets.chomp
-an = Anagrams.new(input_text)
-puts "Anagrams in your #{input_text} file are: "
-an.get_anagrams.each do |result|
+input_file = ARGV[0]
+
+an = Anagrams.new(input_file)
+an.get_anagrams.values.select { |word_values| word_values.length > 1 }.each do |result|
   puts result.join(", ")
 end
 
